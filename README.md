@@ -13,3 +13,10 @@ npx create-react-app <project name>
 ```
 npm create vite@latest
 ```
+
+### React File Structure
+
+In both `npx` and `vite` way of using react:
+- [x] Naming Convention: React Components should always be named with a Capital Letter
+- [x] The Components should be given appropiate extensions (.js/.ts or .jsx/.tsx)
+- [x] Use React fragment `<> </>` tags to wrap all the other tags in the function return
