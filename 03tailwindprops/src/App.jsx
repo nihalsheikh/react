@@ -8,7 +8,10 @@ function App() {
   const [count, setCount] = useState(0)
 
   const addValue = () => {
-    setCount(count + 1)
+    setCount(prevCounter => prevCounter + 1)
+    setCount(prevCounter => prevCounter + 1)
+    setCount(prevCounter => prevCounter + 1)
+    setCount(prevCounter => prevCounter + 1)
   }
 
   const removeValue = () => {
@@ -27,6 +30,11 @@ function App() {
   return (
     <>
       <h1 className="bg-green-500 text-black p-4 rounded-2xl mb-4">Tailwind and Props</h1>
+
+      <p>Count: </p>
+      <button onClick={addValue}>+ &nbsp;</button>
+      {count}
+      <button onClick={removeValue}>&nbsp; - </button>
 
       <br />
       {/* Passing Props */}
