@@ -1,15 +1,9 @@
-import { useState } from 'react'
+import Header from "./components/Header/Header";
+import Home from "./components/Home/Home";
+import Footer from "./components/Footer/Footer";
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-		<h1 className="text-4xl font-bold bg-blue-400 text-center mt-4 px-4 py-6">
-			React Router
-		</h1>
-    </>
-  )
+	return <></>;
 }
 
-export default App
+export default App;
