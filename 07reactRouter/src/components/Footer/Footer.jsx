@@ -65,6 +65,21 @@ export default function Footer() {
 										Contact Us
 									</NavLink>
 								</li>
+
+								<li className="mb-4">
+									<NavLink
+										to="/github"
+										className={({ isActive }) =>
+											`hover:underline ${
+												isActive
+													? "text-red-700"
+													: "text-gray-700"
+											}`
+										}
+									>
+										GitHub Stats
+									</NavLink>
+								</li>
 							</ul>
 						</div>
 						<div>
