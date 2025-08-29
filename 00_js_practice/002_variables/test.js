@@ -8,3 +8,4 @@ var city = "Nagpur"
 let listState;
 
 console.table([email, number, city, listState])
+ 
