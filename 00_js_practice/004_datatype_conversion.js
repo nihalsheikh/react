@@ -32,3 +32,4 @@ console.log(numBool2)
 // Boolean for number
 //  0 => false
 // 1 or any number +ve or -ve or decimal => true
+// bool to num
