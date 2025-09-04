@@ -1,19 +1,24 @@
+import { useEffect, useState } from "react";
 import "./App.css";
 
 const Card = ({ title }) => {
+	const [hasLiked, setHasLiked] = useState(false);
+	const [count, setCount] = useState(0)
+
+	useEffect(() => {
+		console.log(`${title} Movie was liked: ${hasLiked}`)
+	}, [hasLiked])
+
 	return (
-		<div
-			style={ {
-				border: "1px solid #4b5362",
-				padding: "20px",
-				margin: "10px",
-				backgroundColor: "#31363f",
-				borderRadius: "10px",
-				minHeight: "100px",
-			} }
-		>
-			<h2>{title}</h2>
-		</div>
+		<>
+			<div className="card">
+				<h2>{title}</h2>
+
+				<button onClick={() => setHasLiked(!hasLiked)}>
+					{hasLiked ? "❤️" : "🤍"}
+				</button>
+			</div>
+		</>
 	);
 };
 
@@ -27,13 +32,13 @@ const App = () => {
 				actors={[{ name: "Keanu Reeves" }]}
 			/>
 			<Card
-				title="Star Wars"
+				title="Harry Potter"
 				rating={5}
 				isCool={true}
 				actors={[{ name: "Samuel L. Jackson" }]}
 			/>
 			<Card
-				title="Bullet Train"
+				title="Gran Turismo"
 				rating={5}
 				isCool={true}
 				actors={[{ name: "Bradd Pitt" }]}
