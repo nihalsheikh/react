@@ -9,12 +9,16 @@ const Card = ({ title }) => {
 		console.log(`${title} Movie was liked: ${hasLiked}`)
 	}, [hasLiked])
 
+	useEffect(() => {
+		console.log(`${title} was clicked: ${count}`)
+	}, [count])
+
 	return (
 		<>
-			<div className="card">
+			<div className="card" onClick={() => setCount((prevCount) => prevCount + 1)}>
 				<h2>{title}</h2>
 
-				<button onClick={() => setHasLiked(!hasLiked)}>
+				<button onClick={() => setHasLiked((prevHasLiked) => !prevHasLiked)}>
 					{hasLiked ? "❤️" : "🤍"}
 				</button>
 			</div>
