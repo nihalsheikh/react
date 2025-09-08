@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import Search from "./components/Search";
 import Spinner from "./components/Spinner";
 import MovieCard from "./components/MovieCard";
-import { useDebounce } from "react-use"
+import { useDebounce } from "react-use";
+import { updateSearchCount } from "./appwrite";
 
 const API_BASE_URL = "https://api.themoviedb.org/3";
 
@@ -21,17 +22,21 @@ const App = () => {
 	const [errorMessage, setErrorMessage] = useState("");
 	const [movieList, setMovieList] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
-	const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("")
+	const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
 
 	// Debounce the search term to prevent too many API requests, by waiting for the user to stop typing for 500ms
-	useDebounce(() => setDebouncedSearchTerm(searchTerm), 500, [searchTerm])
+	useDebounce(() => setDebouncedSearchTerm(searchTerm), 500, [searchTerm]);
 
 	const fetchMovies = async (query = "") => {
 		setIsLoading(true);
 		setErrorMessage("");
 
 		try {
-			const endpoint = query ? `${API_BASE_URL}/search/movie?query=${encodeURIComponent(query)}` : `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`;
+			const endpoint = query
+				? `${API_BASE_URL}/search/movie?query=${encodeURIComponent(
+						query
+				)}`
+				: `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`;
 
 			const response = await fetch(endpoint, API_OPTIONS);
 
@@ -49,7 +54,9 @@ const App = () => {
 
 			setMovieList(data.results || []);
 
-			console.log(data);
+			if (query && data.results.length > 0) {
+				await updateSearchCount(query, data.results[0]);
+			}
 		} catch (error) {
 			console.log(`Error fetching movies: ${error}`);
 			setErrorMessage("Error Fetching Movies. Please try again later");
@@ -73,7 +80,10 @@ const App = () => {
 						You'll Enjoy Without the Hassle
 					</h1>
 
-					<Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+					<Search
+						searchTerm={searchTerm}
+						setSearchTerm={setSearchTerm}
+					/>
 				</header>
 
 				<section className="all-movies">
