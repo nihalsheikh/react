@@ -2,24 +2,30 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-	const [value, setValue] = useState(1);
+	console.log("Render App:", Math.random());
+	const [value, setValue] = useState({ value: 0 });
 
 	// const [multipliedValue, setMultipliedValue] = useState(1);
 
-	let multipliedValue = value * 5;
+	// let multipliedValue = value * 5;
 
-	const multiplyNum = () => {
-		// setMultipliedValue(value * 5);
-		setValue(value + 1);
+	// const multiplyNum = () => {
+	// 	// setMultipliedValue(value * 5);
+	// 	setValue(value + 1);
+	// };
+
+	const clickMe = () => {
+		// console.log("logged");
+		setValue({ value: 0 });
 	};
 
 	return (
 		<>
-			<h1>Main Value: {value} </h1>
+			<h1>Main Value: {value.value} </h1>
 
-			<button onClick={multiplyNum}>Click to Multiply by 5</button>
+			<button onClick={clickMe}>Click to Multiply by 5</button>
 
-			<h2>Multiplied Value: {multipliedValue}</h2>
+			{/* <h2>Multiplied Value: {multipliedValue}</h2> */}
 		</>
 	);
 }
