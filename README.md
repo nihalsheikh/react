@@ -24,6 +24,8 @@ In both `npx` and `vite` way of using react:
 
 
 # Making Project
-- [ ] Blog Web-app
+- [x] Blog Web-app
 	- appwrite
 	- react hook form
+	- rich text editor, tinymce
+	- redux
